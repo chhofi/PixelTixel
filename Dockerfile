@@ -15,5 +15,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN git clone https://github.com/chhofi/PixelTixel
 
 # Set the command to run your script
-CMD ["python", "./pixelflut.py"]
-
+CMD ["python", "/usr/src/app/PixelTixel/pixelflut.py"]

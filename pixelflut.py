@@ -4,25 +4,20 @@ import random
 from PIL import Image
 import logging
 
-# Ethernet and Wi-Fi
-
-# Ethernet and Wi-Fi IPs
-eth_ip = '151.217.1.227'
-
 # Server-Adresse und Port
-HOST = '151.217.15.79'
+HOST = '151.217.15.90'
 PORT = 1337
 
 # Modusauswahl: 'square' oder 'image'
 mode = 'square'  # Ändere dies zu 'image', um ein Bild zu zeichnen
 
 # Mittelpunkt definieren
-MID_X = 300  # Mittelpunkt X-Achse 1700
+MID_X = 1300  # Mittelpunkt X-Achse 1700
 MID_Y = 800  # Mittelpunkt Y-Achse 
 
 # Bild laden und Größe anpassen, falls Modus 'image' gewählt wird
-if mode == 'image':
-    image_path = '/Users/christianhofmann/Downloads/cybercat.png'  # Setze den Pfad zu deinem Bild
+if mode == 'square':
+    image_path = './cybercat.png'  # Setze den Pfad zu deinem Bild
     image = Image.open(image_path)
     image = image.resize((200, 200))  # Größe anpassen
     image = image.convert('RGB')
@@ -31,6 +26,7 @@ if mode == 'image':
 else:
     SIZE_X = 200  # Quadratgröße X
     SIZE_Y = 200  # Quadratgröße Y
+
 
 # Startposition basierend auf Mittelpunkt berechnen
 START_X = MID_X - SIZE_X // 2
@@ -46,7 +42,7 @@ def draw(mode, start_x, end_x, s):
 
         for screen_x, screen_y in pixel_coords:
             if (screen_x, screen_y) not in drawn_pixels:
-                color = '00ff00'  # Farbe für das Quadrat
+                color = '00FF00'  # Farbe für das Quadrat
                 pixel_data = f'PX {screen_x} {screen_y} {color}\n'
                 try:
                     s.sendall(pixel_data.encode())
@@ -104,7 +100,7 @@ def main():
                 draw(mode, START_X, START_X + SIZE_X, s)
         except ConnectionRefusedError:
             print("Connection refused, trying again...")
-            time.sleep(1)
+            time.sleep(0.1)
         except Exception as e:
             logging.error(f"Error during drawing: {e}")
             time.sleep(1)  # Wait a bit before retrying
