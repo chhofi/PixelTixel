@@ -17,7 +17,7 @@ MID_Y = 800  # Mittelpunkt Y-Achse
 
 # Bild laden und Größe anpassen, falls Modus 'image' gewählt wird
 if mode == 'square':
-    image_path = './cybercat.png'  # Setze den Pfad zu deinem Bild
+    image_path = 'cybercat.png'  # Setze den Pfad zu deinem Bild
     image = Image.open(image_path)
     image = image.resize((200, 200))  # Größe anpassen
     image = image.convert('RGB')
