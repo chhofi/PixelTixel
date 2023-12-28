@@ -95,6 +95,7 @@ def main():
     while True:
         try:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                print("Pixelflut started ...")
                 s.bind((local_ip, 0))  # Bind to the specified IP address
                 s.connect((HOST, PORT))
                 draw(mode, START_X, START_X + SIZE_X, s)
